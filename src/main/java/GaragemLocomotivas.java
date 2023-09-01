@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class garagemLocomotivas
+public class GaragemLocomotivas
 {
     ArrayList <Locomotivas> garagemLocomotivas = new ArrayList <Locomotivas>();
     
