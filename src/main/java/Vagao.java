@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Vagao {
     Random rn = new Random();
@@ -16,6 +17,10 @@ public class Vagao {
         atributes.add(String.valueOf(ID));
         atributes.add(String.valueOf(capacity));
         return atributes;
+    }
+
+    public void addTrain(){
+        garagemVagoes.allTrains(train());
     }
 
     public int getID(int index) {
@@ -39,15 +44,23 @@ public class Vagao {
 
     private ArrayList<Integer> idComposition = new ArrayList<>();
 
-    public void createComposition(int id){
-        if (garagemVagoes.checkId(id))
-            idComposition.add(id);
-        else {
-            throw new RuntimeException("ID inserido não consta no sistema");
+    public void createComposition(){
+        Scanner in = new Scanner(System.in);
+        int id;
+        do {
+            System.out.println("Digite um ID para adcionar na composição ou '0' para sair");
+            id = in.nextInt();
+            if (garagemVagoes.checkId(id))
+                idComposition.add(id);
+            else {
+                throw new RuntimeException("ID inserido não consta no sistema");
+            }
         }
+        while (id != 0);
     }
     public void setIdComposition(){
-            garagemVagoes.setIdComposition(idComposition);
+        garagemVagoes.setIdComposition(idComposition);
+        idComposition.clear();
     }
     public void readSavedTrain() throws FileNotFoundException {
         garagemVagoes.readSavedVagao();
