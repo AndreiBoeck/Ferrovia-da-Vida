@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class GaragemLocomotivas
 {
-    ArrayList <Locomotivas> garagemLocomotivas = new ArrayList <Locomotivas>();
+    ArrayList <Locomotiva> garagemLocomotivas = new ArrayList <Locomotiva>();
     
-    public void addLocomotiva(Locomotivas locomotiva)
+    public void addLocomotiva(Locomotiva locomotiva)
     {
         garagemLocomotivas.add(locomotiva);
     }
     
-    public void removeLocomotiva(Locomotivas locomotiva)
+    public void removeLocomotiva(Locomotiva locomotiva)
     {
         garagemLocomotivas.remove(locomotiva);
     }

@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -46,5 +48,12 @@ public class Vagao {
     }
     public void setIdComposition(){
             garagemVagoes.setIdComposition(idComposition);
+    }
+    public void readSavedTrain() throws FileNotFoundException {
+        garagemVagoes.readSavedVagao();
+    }
+
+    public void saveVagao() throws IOException {
+        garagemVagoes.saveAll();
     }
 }

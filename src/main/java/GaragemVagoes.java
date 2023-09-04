@@ -1,15 +1,18 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 public class GaragemVagoes {
-    private final ArrayList<ArrayList<String>> all = new ArrayList<>();
+    ArrayList<ArrayList<String>> all = new ArrayList<>();
 
-    private ArrayList<ArrayList<Integer>> idComposition = new ArrayList<>();
+    ArrayList<ArrayList<Integer>> idComposition = new ArrayList<>();
     public int size = 0;
 
     public ArrayList<ArrayList<String>> allTrains(ArrayList<String> train){
@@ -51,11 +54,31 @@ public class GaragemVagoes {
     public ArrayList<ArrayList<Integer>> getAllIdComposition(){
         return idComposition;
     }
+    public void readSavedVagao() throws FileNotFoundException {
+        File file = new File("src/main/bin");
+        Scanner fl = new Scanner(file);
+        ArrayList<String[]> hold = new ArrayList<>();
+
+        while (fl.hasNextLine()){
+            hold.add(fl.nextLine().split(", "));
+        }
+        for (String[] a : hold) {
+            ArrayList<String> savedTrain = new ArrayList<>();
+            savedTrain.add(a[0]);
+            savedTrain.add(a[1]);
+            savedTrain.add(a[2]);
+            all.add(savedTrain);
+        }
+        System.out.println(all);
+    }
 
     public void saveAll() throws IOException {
         PrintStream fl = new PrintStream("src/main/bin");
         for (ArrayList<String> write : all) {
-            fl.println(write);
+            for (String a: write
+                 ) {
+                fl.print(a + ',');
+            }
         }
         fl.close();
     }
