@@ -12,7 +12,7 @@ import static java.lang.Integer.parseInt;
 public class GaragemVagoes {
     ArrayList<ArrayList<String>> all = new ArrayList<>();
 
-    ArrayList<ArrayList<Integer>> idComposition = new ArrayList<>();
+    ArrayList<ArrayList<String>> idComposition = new ArrayList<>();
     public int size = 0;
 
     public ArrayList<ArrayList<String>> allTrains(ArrayList<String> train){
@@ -21,37 +21,47 @@ public class GaragemVagoes {
         return all;
     }
 
+    public void setFalse(String id){
+        for (ArrayList<String> a : all) {
+            if(a.get(1).equals(id)){
+                a.remove(0);
+                a.add(0, "false");
+            }
+
+        }
+    }
+
     public ArrayList<ArrayList<String>> getAll(){
         return all;
     }
 
-    public boolean checkId(int ID ){
+    public boolean checkId(String ID ){
         ArrayList<String> hold = new ArrayList<>();
         for (ArrayList<String> i : all) {
-            if(ID == parseInt(i.get(1))){
+            if(ID.equals(i.get(1))){
             hold = i;
             }
         }
         return parseBoolean(hold.get(0));
     }
 
-    public int getID( int index ){
-        return parseInt(all.get(index).get(1));
+    public String getID( int index ){
+        return all.get(index).get(1);
     }
 
     public double getCapacity( int index ){
         return parseDouble(all.get(index).get(2));
     }
 
-    public void setIdComposition(ArrayList<Integer> idComposition) {
+    public void setIdComposition(ArrayList<String> idComposition) {
         this.idComposition.add(idComposition);
     }
 
-    public ArrayList<Integer> getIdComposition(int index) {
+    public ArrayList<String> getIdComposition(int index) {
         return idComposition.get(index);
     }
 
-    public ArrayList<ArrayList<Integer>> getAllIdComposition(){
+    public ArrayList<ArrayList<String>> getAllIdComposition(){
         return idComposition;
     }
     public void readSavedVagao() throws FileNotFoundException {
