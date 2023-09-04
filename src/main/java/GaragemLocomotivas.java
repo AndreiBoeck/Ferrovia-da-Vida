@@ -5,19 +5,30 @@ public class GaragemLocomotivas
 
     private int v = 0;
     private int atual = 0;
+
+    ArrayList<ArrayList<String>> all = new ArrayList<>();
     ArrayList <Locomotiva> garagemLocomotivas = new ArrayList <Locomotiva>();
 
     //mudar capacidade maxima dependendo da capacidade
 
-    public void addLocomotiva(Locomotiva locomotiva)
-    {
-        garagemLocomotivas.add(locomotiva);
-        garagemLocomotivas.get(atual).setNome(v);
-        v++;
-        atual++;
 
+    public ArrayList<ArrayList<String>> allTrains(ArrayList<String> train){
+        all.add(train);
+        atual++;
+        return all;
     }
-    
+    public ArrayList<ArrayList<String>> getAll(){
+        return all;
+    }
+    public void setFalse(String id){
+        for (ArrayList<String> a : all) {
+            if(a.get(1).equals(id)){
+                a.remove(0);
+                a.add(0, "false");
+            }
+
+        }
+    }
     public void removeLocomotiva(Locomotiva locomotiva)
     {
         garagemLocomotivas.remove(atual);
