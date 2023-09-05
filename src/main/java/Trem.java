@@ -43,7 +43,7 @@ public class Trem {
         count++;
         return "T" + String.valueOf(count);
     }
-    public boolean desegatarVagoes(String id){
+    public boolean desengatarVagoes(String id){
         sizeV--;
         return !vagao.getAvailability(id);
     }
@@ -90,5 +90,10 @@ public class Trem {
     public void getTremfromPatio(String id){
         composicao = patio.getTrem(id);
         System.out.println("O trem ja foi recuperado do patio");
+    }
+
+    public ArrayList<ArrayList<String>> alltrens (){
+        return patio.allTrem;
+
     }
 }
