@@ -21,7 +21,7 @@ public class Trem {
         }
         return false;
     }
-    public boolean engatarLoComotivas(){
+    public boolean engatarLocomotivas(){
         sizeL++;
         for (String a: composicao) {
             if(a.startsWith("V")){
