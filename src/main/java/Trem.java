@@ -6,6 +6,8 @@ public class Trem {
     Locomotiva locomotiva = new Locomotiva();
     ArrayList<String> composicao = new ArrayList<>();
 
+    PatioTrem patio = new PatioTrem();
+
     private int sizeL = 0;
     private int sizeV = 0;
     public boolean engatarVagoes(){
@@ -19,8 +21,14 @@ public class Trem {
         }
         return false;
     }
-    public boolean engatarLovomotivas(){
+    public boolean engatarLoComotivas(){
         sizeL++;
+        for (String a: composicao) {
+            if(a.startsWith("V")){
+                System.out.println("Vagoes ja engatados, desengate e tente novamente");
+                return false;
+            }
+        }
         for (ArrayList<String> a: locomotiva.garagemLocomotivas.getAll()) {
             if (parseBoolean(a.get(0))){
                 composicao.add(a.get(1));
@@ -63,5 +71,24 @@ public class Trem {
             }
         }
         return capacity;
+    }
+    public boolean addTremtoPatio(){
+        composicao.add(0, idTrem());
+        patio.addTrain();
+        return true;
+    }
+
+    public void removeTremfromPatio(String id){
+        if(patio.removeTrem(id)){
+            System.out.println("Trem removido com sucesso");
+        }
+        else {
+            System.out.println("Id não cadastrado em nosso sistema");
+        }
+    }
+
+    public void getTremfromPatio(String id){
+        composicao = patio.getTrem(id);
+        System.out.println("O trem ja foi recuperado do patio");
     }
 }
