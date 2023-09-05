@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Double.parseDouble;
-import static java.lang.Integer.parseInt;
 
 public class GaragemVagoes {
     ArrayList<ArrayList<String>> all = new ArrayList<>();

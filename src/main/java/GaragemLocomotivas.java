@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import static java.lang.Boolean.parseBoolean;
+
 public class GaragemLocomotivas
 {
 
@@ -29,6 +31,17 @@ public class GaragemLocomotivas
 
         }
     }
+
+    public boolean checkId(String ID ){
+        ArrayList<String> hold = new ArrayList<>();
+        for (ArrayList<String> i : all) {
+            if(ID.equals(i.get(1))){
+                hold = i;
+            }
+        }
+        return parseBoolean(hold.get(0));
+    }
+
     public void removeLocomotiva(Locomotiva locomotiva)
     {
         garagemLocomotivas.remove(atual);
@@ -39,3 +52,5 @@ public class GaragemLocomotivas
         return garagemLocomotivas.size();
     }
 }
+
+

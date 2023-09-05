@@ -12,7 +12,7 @@ public class Locomotiva {
         double capacity = 100;
         ArrayList<String> atributes = new ArrayList<>();
         atributes.add(String.valueOf(availability));
-        atributes.add("V"+String.valueOf(ID));
+        atributes.add("L"+String.valueOf(ID));
         atributes.add(String.valueOf(capacity));
         return atributes;
     }
@@ -37,8 +37,12 @@ public class Locomotiva {
         return id;
     }
     public double getPesoMaximo() {
-        return 0.0;
+        return 4500.0;
     }
+    public boolean getAvailability(String id){
+        return garagemLocomotivas.checkId(id);
+    }
+
     public int getnVagoes() {
         return nVagoes;
     }

@@ -38,8 +38,8 @@ public class Vagao {
     public double getCapacity(int index) {
         return garagemVagoes.getCapacity(index);
     }
-    public boolean getAvailability(int index){
-        return garagemVagoes.checkId(getID(index));
+    public boolean getAvailability(String id){
+        return garagemVagoes.checkId(id);
     }
     public ArrayList<String> getComposition(int index){
         ArrayList<String> composition = new ArrayList<>();
