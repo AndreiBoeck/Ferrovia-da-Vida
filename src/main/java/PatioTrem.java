@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class PatioTrem {
-    Trem trem = new Trem();
+    Trem trem;
     ArrayList<ArrayList<String>> allTrem = new ArrayList<>();
     public void addTrain(){
+        trem = new Trem();
         allTrem.add(trem.composicao);
     }
 
