@@ -62,34 +62,4 @@ public class GaragemVagoes {
     public ArrayList<ArrayList<String>> getAllIdComposition(){
         return idComposition;
     }
-    public void readSavedVagao() throws FileNotFoundException {
-        File file = new File("src/main/resources/bin");
-        Scanner fl = new Scanner(file);
-        ArrayList<String[]> hold = new ArrayList<>();
-
-        while (fl.hasNextLine()){
-            hold.add(fl.nextLine().split(","));
-        }
-        for (String[] a : hold) {
-            ArrayList<String> savedTrain = new ArrayList<>();
-            savedTrain.add(a[0]);
-            savedTrain.add(a[1]);
-            savedTrain.add(a[2]);
-            all.add(savedTrain);
-            size++;
-        }
-        System.out.println(all);
-    }
-
-    public void saveAll() throws IOException {
-        PrintStream fl = new PrintStream("src/main/resources/bin");
-        for (ArrayList<String> write : all) {
-            for (String a: write
-                 ) {
-                fl.print(a + ',');
-            }
-            fl.println();
-        }
-        fl.close();
-    }
 }

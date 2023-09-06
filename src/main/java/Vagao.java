@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -35,8 +33,8 @@ public class Vagao {
         return garagemVagoes.getID(index);
     }
 
-    public double getCapacity(int index) {
-        return garagemVagoes.getCapacity(index);
+    public double getCapacity() {
+        return 150.0;
     }
     public boolean getAvailability(String id){
         return garagemVagoes.checkId(id);
@@ -44,6 +42,18 @@ public class Vagao {
     public ArrayList<String> getComposition(int index){
         ArrayList<String> composition = new ArrayList<>();
         return garagemVagoes.getIdComposition(index);
+    }
+
+    public int getsize(){
+        return garagemVagoes.size;
+    }
+
+    public ArrayList<String> getAllid(){
+        ArrayList<String> hold = new ArrayList<>();
+        for (ArrayList<String> a:garagemVagoes.getAll()) {
+            hold.add(a.get(1));
+        }
+        return hold;
     }
 
     public ArrayList<ArrayList<String>> getAllIdComposition(){
@@ -69,12 +79,5 @@ public class Vagao {
     public void setIdComposition(){
         garagemVagoes.setIdComposition(idComposition);
         idComposition.clear();
-    }
-    public void readSavedTrain() throws FileNotFoundException {
-        garagemVagoes.readSavedVagao();
-    }
-
-    public void saveVagao() throws IOException {
-        garagemVagoes.saveAll();
     }
 }

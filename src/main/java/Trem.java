@@ -92,6 +92,7 @@ public class Trem {
 
     public void getTremfromPatio(String id){
         composicao = patio.getTrem(id);
+        System.out.println(composicao);
         System.out.println("O trem ja foi recuperado do patio");
     }
 

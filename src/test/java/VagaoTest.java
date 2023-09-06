@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VagaoTest {
     Vagao vagao;
-    @BeforeEach
-    void setUp() throws FileNotFoundException {
-        vagao = new Vagao();
-        vagao.readSavedTrain();
-    }
     @Test
     void TestTrain() {
         assertNotEquals(vagao.train(), vagao.train(), "Não deve ser igual");
