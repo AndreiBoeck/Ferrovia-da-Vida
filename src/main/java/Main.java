@@ -37,10 +37,9 @@ public class Main {
                     switch (escolha2) {
                         case 1:
                             System.out.println("Quantas locomotivas gostaria de adicionar?");
-                            int quantidadeLocomotiva = input.nextInt();
+                            int qL = input.nextInt();
 
-                            for(int i = 0; i<quantidadeLocomotiva;i++) {
-
+                            for(int i = 0; i<qL;i++) {
                                 trem.engatarLocomotivas();
                             }
                             break;
@@ -68,18 +67,17 @@ public class Main {
                 case 3:
                     System.out.println("~~~Edição de trens~~~");
                     System.out.println("Qual trem você gostaria de editar?");
-                    System.out.print("ID: ");
-                    String idtrem = input.next();
-                    System.out.println("\nVocê gostaria de:");
+
+                    String idtrem = input.nextLine();
+                    System.out.println("Você gostaria de:");
                     System.out.println("1 - Engatar Locomotiva;");
                     System.out.println("2 - Engatar Vagão;");
                     System.out.println("3 - Desengatar Locomotiva;");
                     System.out.println("4 - Desengatar Vagão;");
-
                     escolha3 = input.nextInt();
                     switch (escolha3){
                     case 1:
-                        //trem.engatarLocomotivas();
+                        trem.engatarLocomotivas();
                         break;
 
                         case 2:

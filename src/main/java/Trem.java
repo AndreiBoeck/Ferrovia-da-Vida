@@ -99,4 +99,11 @@ public class Trem {
         return patio.allTrem;
 
     }
+
+    public void gerarLeV(){
+        for (int i = 0; i<10000; i++){
+            vagao.addTrain();
+            locomotiva.addLocomotiva();
+        }
+    }
 }
