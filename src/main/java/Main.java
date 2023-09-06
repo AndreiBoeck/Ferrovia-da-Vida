@@ -10,6 +10,10 @@ public class Main {
         Trem trem = new Trem();
         Vagao vagao = new Vagao();
         Locomotiva locomotiva = new Locomotiva();
+        for (int i = 0; i < 100; i++) {
+            locomotiva.addLocomotiva();
+            vagao.addTrain();
+        }
 
         int escolha;
         int escolha2;
@@ -160,7 +164,7 @@ public class Main {
 
                             System.out.println("Qual dos vagões deseja ver o id");
                             int temp = vagao.getsize();
-                            System.out.printf("Temos %d vagões/n", temp);
+                            System.out.printf("Temos %d vagões\n", temp);
                             int index = input.nextInt();
                             vagao.getID(index);
                             break;
