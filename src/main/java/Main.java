@@ -15,6 +15,7 @@ public class Main {
         int escolha2;
         int escolha3;
         int escolha4;
+        int escolha5;
         do {
             System.out.println("Bem vindo!");
             System.out.println("o que gostaria de fazer?");
@@ -22,6 +23,8 @@ public class Main {
             System.out.println("2 - Listar Identificadores dos trens;");
             System.out.println("3 - Editar trem;");
             System.out.println("4 - Acessar informações de trens;");
+            System.out.println("5 - Opções relacionadas a Vagões");
+            System.out.println("6 - Opções relacionadas as Locomotivas");
             escolha = input.nextInt();
 
             switch(escolha) {
@@ -45,26 +48,26 @@ public class Main {
                             }
                             break;
 
-                case 2:
-                    System.out.println("Quantos vagões gostaria de adicionar?");
-                    int qV = input.nextInt();
+                        case 2:
+                            System.out.println("Quantos vagões gostaria de adicionar?");
+                            int qV = input.nextInt();
 
-                    for(int i = 0; i<qV;i++) {
-                        trem.engatarVagoes();
-                    }
-                    break;
-                    
+                            for(int i = 0; i<qV;i++) {
+                                trem.engatarVagoes();
+                            }
+                        break;
                         case 3:
                             trem.addTremtoPatio();
                             System.out.println("Trem enviado ao pátio!");
-            }
+                            break;
+                    }
+                    break;
                 case 2:
                     System.out.println("~~~Listagem de Identificador de trens~~~");
                     for (ArrayList<String> a : trem.alltrens()) {
                         System.out.println(a);
                     }
                     break;
-
                 case 3:
                     System.out.println("~~~Edição de trens~~~");
                     System.out.println("Qual trem você gostaria de editar?");
@@ -87,13 +90,14 @@ public class Main {
                             break;
 
                         case 3:
-                          trem.desengatarLocomotiva(idtrem);
+                            trem.desengatarLocomotiva(idtrem);
                         break;
 
                         case 4:
                             trem.desengatarVagoes(idtrem);
+                            break;
                     }
-
+                    break;
                 case 4:
                     System.out.println("~~~Acessar informação de trens~~~");
                     System.out.println("Qual trem você gostaria de se informar?");
@@ -123,6 +127,68 @@ public class Main {
                             break;
 
                     }
+                    break;
+                case 5:
+                    System.out.println("~~~Opção relacionada a vagões~~~");
+                    System.out.println("O que gostaria de fazer?");System.out.println();
+                    System.out.println("1 - Criar vagões;");
+                    System.out.println("2 - Ver vagões já cadastrados;");
+                    System.out.println("O que gostaria de fazer?");
+                    System.out.println("3 - Ver capacidade de toneladas do vagão;");
+                    System.out.println("4 -  Ver o ID de um vagão;");
+                    System.out.println("5- Ver a disponibilidade de um vagão;");
+                    System.out.println("6 - Criar composição de vagões;");
+                    System.out.println("7 - Enviar composição de vagões para a garagem;");
+                    System.out.println("8 - Retirar composição de vagões da garagem;");
+
+                    escolha5 = input.nextInt();
+                    switch (escolha5){
+                        case 1:
+                            System.out.println("Quantos vagões deseja criar?");
+                            int quant = input.nextInt();
+                            for (int i = 0; i < quant; i++) {
+                                vagao.addTrain();
+                            }
+                            System.out.println(quant + " vagões criados!");
+                            break;
+                        case 2:
+                            System.out.println("Cadastrados:");
+                            vagao.getAll();
+                            break;
+                        case 3:
+                            System.out.println(vagao.getAllid());
+
+                            System.out.println("Qual dos vagões deseja ver o id");
+                            int temp = vagao.getsize();
+                            System.out.printf("Temos %d vagões/n", temp);
+                            int index = input.nextInt();
+                            vagao.getID(index);
+                            break;
+                        case 4:
+                            System.out.printf("Vagões possuem %f toneladas de capacidade/n", vagao.getCapacity());
+                            break;
+                        case 5:
+                            System.out.println("Insira o id para checar disponibilidade");
+                            String id = input.next();
+                            System.out.println("Disponibilidade do vagão " + id + ": " + vagao.getAvailability(id));
+                            break;
+                        case 6:
+                            System.out.println("~~~Criar composição de vagões~~~");
+                            vagao.createComposition();
+                            System.out.println("Composição criada!");
+                            break;
+                        case 7:
+                            vagao.setIdComposition();
+                            System.out.println("Composiçao de vagões enviada para garagem!");
+                            break;
+                        case 8:
+                            vagao.getAllIdComposition();
+                            System.out.println("Composição retirada da garagem;");
+                            break;
+                    }
+                    break;
+                case 8:
+                    System.out.println("Opções de Locomotiva");
 
 
             }
