@@ -68,6 +68,9 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("~~~Listagem de Identificador de trens~~~");
+                    if(trem.alltrens().size() <= 1){
+                        System.out.println("Nenhum trem criado");
+                    }
                     for (ArrayList<String> a : trem.alltrens()) {
                         System.out.println(a);
                     }
