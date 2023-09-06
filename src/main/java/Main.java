@@ -19,9 +19,8 @@ public class Main {
             System.out.println("Bem vindo!");
             System.out.println("o que gostaria de fazer?");
             System.out.println("1 - Compor um trem;");
-            System.out.println("2 - Listar Identificadores dos trens;");
-            System.out.println("3 - Editar trem;");
-            System.out.println("4 - Acessar informações de trens;");
+            System.out.println("2 - Editar trem;");
+            System.out.println("3 - Acessar informações de trens;");
             escolha = input.nextInt();
 
             switch(escolha) {
@@ -32,7 +31,7 @@ public class Main {
                     System.out.println("Você gostaria de:");
                     System.out.println("1 - Engatar Locomotiva;");
                     System.out.println("2 - Engatar Vagão;");
-                    System.out.println("3 - Enviar trem ao pátio;");
+                    System.out.println("0 - Voltar ao menu principal;");
                     escolha2 = input.nextInt();
                     switch (escolha2) {
                         case 1:
@@ -58,13 +57,6 @@ public class Main {
                             System.out.println("Trem enviado ao pátio!");
             }
                 case 2:
-                    System.out.println("~~~Listagem de Identificador de trens~~~");
-                    for (ArrayList<String> a : trem.alltrens()) {
-                        System.out.println(a);
-                    }
-                    break;
-
-                case 3:
                     System.out.println("~~~Edição de trens~~~");
                     System.out.println("Qual trem você gostaria de editar?");
 
@@ -92,7 +84,7 @@ public class Main {
                             trem.desengatarVagoes(idtrem);
                     }
 
-                case 4:
+                case 3:
                     System.out.println("~~~Acessar informação de trens~~~");
                     System.out.println("Qual trem você gostaria de se informar?");
                     for (ArrayList<String> a : trem.alltrens()) {
