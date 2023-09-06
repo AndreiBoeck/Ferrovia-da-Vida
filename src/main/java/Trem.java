@@ -23,7 +23,9 @@ public class Trem {
     }
     public boolean engatarLocomotivas(){
         sizeL++;
+        locomotiva.addLocomotiva();
         for (String a: composicao) {
+
             if(a.startsWith("V")){
                 System.out.println("Vagoes ja engatados, desengate e tente novamente");
                 return false;
@@ -31,6 +33,7 @@ public class Trem {
         }
         for (ArrayList<String> a: locomotiva.garagemLocomotivas.getAll()) {
             if (parseBoolean(a.get(0))){
+
                 composicao.add(a.get(1));
                 vagao.setFalse(a.get(1));
                 return true;

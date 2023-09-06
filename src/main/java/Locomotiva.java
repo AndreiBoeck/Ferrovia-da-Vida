@@ -32,6 +32,9 @@ public class Locomotiva {
     public void setNome(int v) {
         nome = "L" + v;
     }
+    public String getNome() {
+        return nome;
+    }
     public int getId() {
         setId();
         return id;
