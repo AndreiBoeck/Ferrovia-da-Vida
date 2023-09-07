@@ -24,14 +24,4 @@ public class GaragemVagoes {
     public ArrayList<ArrayList<String>> getAll(){
         return all;
     }
-
-    public boolean checkId(String ID ){
-        ArrayList<String> hold = new ArrayList<>();
-        for (ArrayList<String> i : all) {
-            if(ID.equals(i.get(1))){
-            hold = i;
-            }
-        }
-        return parseBoolean(hold.get(0));
-    }
 }
