@@ -18,8 +18,6 @@ public class Main {
             System.out.println("2 - Listar Identificadores dos trens;");
             System.out.println("3 - Editar trem;");
             System.out.println("4 - Acessar informações de trens;");
-            System.out.println("5 - Opções relacionadas a Vagões");
-            System.out.println("6 - Opções relacionadas as Locomotivas");
             escolha = input.nextInt();
 
             switch (escolha) {
