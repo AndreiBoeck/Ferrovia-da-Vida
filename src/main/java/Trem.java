@@ -10,25 +10,18 @@ public class Trem {
 
     private int sizeL = 0;
     private int sizeV = 0;
-    public boolean engatarVagoes(){
+    public void engatarVagoes(){
         sizeV++;
-        for (ArrayList<String> a: vagao.getAll()) {
-            if (parseBoolean(a.get(0))){
-                composicao.add(a.get(1));
-                vagao.setFalse(a.get(1));
-                return true;
-            }
-        }
-        return false;
+        composicao.add(vagao.getOne());
+        vagao.setFalse(vagao.getOne());
     }
-    public boolean engatarLocomotivas(){
+    public void engatarLocomotivas(){
         sizeL++;
         locomotiva.addLocomotiva();
         for (String a: composicao) {
 
             if(a.startsWith("V")){
                 System.out.println("Vagoes ja engatados, desengate e tente novamente");
-                return false;
             }
         }
         for (ArrayList<String> a: locomotiva.garagemLocomotivas.getAll()) {
@@ -36,23 +29,19 @@ public class Trem {
 
                 composicao.add(a.get(1));
                 vagao.setFalse(a.get(1));
-                return true;
             }
         }
-        return false;
     }
     private int count = 0;
     public String idTrem(){
         count++;
-        return "T" + String.valueOf(count);
+        return "T" + count;
     }
-    public boolean desengatarVagoes(String id){
+    public void desengatarVagoes(){
         sizeV--;
-        return !vagao.getAvailability(id);
     }
-    public boolean desengatarLocomotiva(String id){
+    public void desengatarLocomotiva(){
         sizeL--;
-        return !locomotiva.getAvailability(id);
     }
     public ArrayList<String> getIdLeV(){
         return composicao;
@@ -75,25 +64,9 @@ public class Trem {
         }
         return capacity;
     }
-    public boolean addTremtoPatio(){
+    public void addTremtoPatio(){
         composicao.add(0, idTrem());
-        patio.addTrain();
-        return true;
-    }
-
-    public void removeTremfromPatio(String id){
-        if(patio.removeTrem(id)){
-            System.out.println("Trem removido com sucesso");
-        }
-        else {
-            System.out.println("Id não cadastrado em nosso sistema");
-        }
-    }
-
-    public void getTremfromPatio(String id){
-        composicao = patio.getTrem(id);
-        System.out.println(composicao);
-        System.out.println("O trem ja foi recuperado do patio");
+        patio.addTrain(composicao);
     }
 
     public ArrayList<ArrayList<String>> alltrens (){
@@ -101,10 +74,4 @@ public class Trem {
 
     }
 
-    public void gerarLeV(){
-        for (int i = 0; i<10000; i++){
-            vagao.addTrain();
-            locomotiva.addLocomotiva();
-        }
-    }
 }

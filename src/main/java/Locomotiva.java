@@ -12,7 +12,7 @@ public class Locomotiva {
         double capacity = 100;
         ArrayList<String> atributes = new ArrayList<>();
         atributes.add(String.valueOf(availability));
-        atributes.add("L"+String.valueOf(ID));
+        atributes.add("L"+ ID);
         atributes.add(String.valueOf(capacity));
         return atributes;
     }

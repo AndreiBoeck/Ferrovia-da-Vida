@@ -1,22 +1,14 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintStream;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 import static java.lang.Boolean.parseBoolean;
-import static java.lang.Double.parseDouble;
 
 public class GaragemVagoes {
     ArrayList<ArrayList<String>> all = new ArrayList<>();
-
-    ArrayList<ArrayList<String>> idComposition = new ArrayList<>();
     public int size = 0;
 
-    public ArrayList<ArrayList<String>> allTrains(ArrayList<String> train){
+    public void allTrains(ArrayList<String> train){
         all.add(train);
         size++;
-        return all;
     }
 
     public void setFalse(String id){
@@ -41,25 +33,5 @@ public class GaragemVagoes {
             }
         }
         return parseBoolean(hold.get(0));
-    }
-
-    public String getID( int index ){
-        return all.get(index).get(1);
-    }
-
-    public double getCapacity( int index ){
-        return parseDouble(all.get(index).get(2));
-    }
-
-    public void setIdComposition(ArrayList<String> idComposition) {
-        this.idComposition.add(idComposition);
-    }
-
-    public ArrayList<String> getIdComposition(int index) {
-        return idComposition.get(index);
-    }
-
-    public ArrayList<ArrayList<String>> getAllIdComposition(){
-        return idComposition;
     }
 }

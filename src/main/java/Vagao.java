@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Vagao {
     Random rn = new Random();
@@ -12,13 +11,14 @@ public class Vagao {
         double capacity = 150.0;
         ArrayList<String> atributes = new ArrayList<>();
         atributes.add(String.valueOf(availability));
-        atributes.add("V"+String.valueOf(ID));
+        atributes.add("V"+ID);
         atributes.add(String.valueOf(capacity));
         return atributes;
     }
 
-    public void addTrain(){
+    public ArrayList<String> addTrain(){
         garagemVagoes.allTrains(train());
+        return train();
     }
 
     public void setFalse(String id){
@@ -29,55 +29,9 @@ public class Vagao {
         return garagemVagoes.getAll();
     }
 
-    public String getID(int index) {
-        return garagemVagoes.getID(index);
+
+    public String getOne(){
+        return addTrain().get(1);
     }
 
-    public double getCapacity() {
-        return 150.0;
-    }
-    public boolean getAvailability(String id){
-        return garagemVagoes.checkId(id);
-    }
-    public ArrayList<String> getComposition(int index){
-        ArrayList<String> composition = new ArrayList<>();
-        return garagemVagoes.getIdComposition(index);
-    }
-
-    public int getsize(){
-        return garagemVagoes.size;
-    }
-
-    public ArrayList<String> getAllid(){
-        ArrayList<String> hold = new ArrayList<>();
-        for (ArrayList<String> a:garagemVagoes.getAll()) {
-            hold.add(a.get(1));
-        }
-        return hold;
-    }
-
-    public ArrayList<ArrayList<String>> getAllIdComposition(){
-        return garagemVagoes.getAllIdComposition();
-    }
-
-    private ArrayList<String> idComposition = new ArrayList<>();
-
-    public void createComposition(){
-        Scanner in = new Scanner(System.in);
-        String id;
-        do {
-            System.out.println("Digite um ID para adcionar na composição ou '0' para sair");
-            id = in.next();
-            if (garagemVagoes.checkId(id))
-                idComposition.add(id);
-            else {
-                throw new RuntimeException("ID inserido não consta no sistema");
-            }
-        }
-        while (id.equals("0"));
-    }
-    public void setIdComposition(){
-        garagemVagoes.setIdComposition(idComposition);
-        idComposition.clear();
-    }
 }
