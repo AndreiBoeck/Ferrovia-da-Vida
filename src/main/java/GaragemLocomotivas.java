@@ -20,7 +20,6 @@ public class GaragemLocomotivas
         return all;
     }
     public ArrayList<ArrayList<String>> getAll(){
-        System.out.println("chegou aq por alguma caralha de motivo");
         return all;
     }
     public void setFalse(String id){

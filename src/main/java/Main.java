@@ -10,10 +10,6 @@ public class Main {
         Trem trem = new Trem();
         Vagao vagao = new Vagao();
         Locomotiva locomotiva = new Locomotiva();
-        for (int i = 0; i < 100; i++) {
-            locomotiva.addLocomotiva();
-            vagao.addTrain();
-        }
 
         int escolha;
         int escolha2;
@@ -33,39 +29,44 @@ public class Main {
 
             switch(escolha) {
                 case 1:
-                    System.out.println("~~~Composição de trens~~~");
-                    System.out.println("Aviso: Para a criação de trens, você apenas poderá engatar locomotivas atrás de " +
-                            "locomotivas, nunca intercalá-las com os vagões.");
-                    System.out.println("Você gostaria de:");
-                    System.out.println("1 - Engatar Locomotiva;");
-                    System.out.println("2 - Engatar Vagão;");
-                    System.out.println("3 - Enviar trem ao pátio;");
-                    escolha2 = input.nextInt();
-                    switch (escolha2) {
-                        case 1:
-                            System.out.println("Quantas locomotivas gostaria de adicionar?");
-                            int quantidadeLocomotiva = input.nextInt();
+                    do {
+                        System.out.println("~~~Composição de trens~~~");
+                        System.out.println("Aviso: Para a composição de trens, você apenas poderá engatar locomotivas atrás de " +
+                                "locomotivas, nunca intercalá-las com os vagões.");
 
-                            for(int i = 0; i<quantidadeLocomotiva;i++) {
+                        System.out.println("Você gostaria de:");
+                        System.out.println("1 - Engatar Locomotiva;");
+                        System.out.println("2 - Engatar Vagão;");
+                        System.out.println("3 - Enviar trem ao pátio;");
+                        System.out.println("0 - Voltar ao menu principal;");
+                        escolha2 = input.nextInt();
+                        switch (escolha2) {
+                            case 1:
+                                System.out.println("Quantas locomotivas gostaria de adicionar?");
+                                int quantidadeLocomotiva = input.nextInt();
 
-                                trem.engatarLocomotivas();
-                            }
-                            break;
+                                for (int i = 0; i < quantidadeLocomotiva; i++) {
 
-                        case 2:
-                            System.out.println("Quantos vagões gostaria de adicionar?");
-                            int qV = input.nextInt();
+                                    trem.engatarLocomotivas();
+                                }
+                                break;
 
-                            for(int i = 0; i<qV;i++) {
-                                trem.engatarVagoes();
-                            }
-                        break;
-                        case 3:
-                            trem.addTremtoPatio();
-                            System.out.println("Trem enviado ao pátio!");
-                            break;
-                    }
+                            case 2:
+                                System.out.println("Quantos vagões gostaria de adicionar?");
+                                int qV = input.nextInt();
+
+                                for (int i = 0; i < qV; i++) {
+                                    trem.engatarVagoes();
+                                }
+                                break;
+                            case 3:
+                                trem.addTremtoPatio();
+                                System.out.println("Trem enviado ao pátio!");
+                                break;
+                        }
+                    } while (escolha2 != 0);
                     break;
+
                 case 2:
                     System.out.println("~~~Listagem de Identificador de trens~~~");
                     if(trem.alltrens().size() <= 1){
@@ -78,8 +79,15 @@ public class Main {
                 case 3:
                     System.out.println("~~~Edição de trens~~~");
                     System.out.println("Qual trem você gostaria de editar?");
+                    if(trem.alltrens().size() <= 1){
+                        System.out.println("Nenhum trem criado! Crie um trem!");
+                        break;
+                    }  for (ArrayList<String> a : trem.alltrens()) {
+                    System.out.println(a);
+                }
                     System.out.print("ID: ");
                     String idtrem = input.next();
+
                     System.out.println("\nVocê gostaria de:");
                     System.out.println("1 - Engatar Locomotiva;");
                     System.out.println("2 - Engatar Vagão;");
@@ -89,7 +97,7 @@ public class Main {
                     escolha3 = input.nextInt();
                     switch (escolha3){
                     case 1:
-                        //trem.engatarLocomotivas();
+                        trem.engatarLocomotivas();
                         break;
 
                         case 2:
@@ -137,10 +145,9 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("~~~Opção relacionada a vagões~~~");
-                    System.out.println("O que gostaria de fazer?");System.out.println();
+                    System.out.println("O que gostaria de fazer?");
                     System.out.println("1 - Criar vagões;");
                     System.out.println("2 - Ver vagões já cadastrados;");
-                    System.out.println("O que gostaria de fazer?");
                     System.out.println("3 - Ver capacidade de toneladas do vagão;");
                     System.out.println("4 -  Ver o ID de um vagão;");
                     System.out.println("5- Ver a disponibilidade de um vagão;");
@@ -167,7 +174,7 @@ public class Main {
 
                             System.out.println("Qual dos vagões deseja ver o id");
                             int temp = vagao.getsize();
-                            System.out.printf("Temos %d vagões\n", temp);
+                            System.out.printf("Temos %d vagões/n", temp);
                             int index = input.nextInt();
                             vagao.getID(index);
                             break;
