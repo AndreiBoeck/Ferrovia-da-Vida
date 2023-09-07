@@ -14,7 +14,7 @@ public class Main {
         do {
             System.out.println("Bem vindo!");
             System.out.println("o que gostaria de fazer?");
-            System.out.println("1 - Compor um trem;");
+            System.out.println("1 - Compor trem;");
             System.out.println("2 - Listar Identificadores dos trens;");
             System.out.println("3 - Editar trem;");
             System.out.println("4 - Acessar informações de trens;");
