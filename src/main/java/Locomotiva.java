@@ -1,52 +1,75 @@
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.StringJoiner;
 
-public class Locomotiva {
-    Random rn = new Random();
-    GaragemLocomotivas garagemLocomotivas = new GaragemLocomotivas();
-    public boolean availability = true;
+/**
+ * A classe Locomotiva representa o veículo que movimenta uma composição.
+ *
+ * @author marco.mangan@pucrs.br
+ */
+public class Locomotiva extends Carro{
 
-    private int id;
-    public ArrayList<String> train(){
-        int ID = rn.nextInt(10000000, 99999999);
-        double capacity = 100;
-        ArrayList<String> atributes = new ArrayList<>();
-        atributes.add(String.valueOf(availability));
-        atributes.add("L"+ ID);
-        atributes.add(String.valueOf(capacity));
-        return atributes;
-    }
-    public void addLocomotiva()
-    {
-        garagemLocomotivas.allTrains(train());
-    }
+    /**
+     * O identificador da próxima instância de locomotiva.
+     */
+    private static int NEXT_ID = 1;
 
-    private int nVagoes;
-    private boolean ocuopado;
+    /**
+     * O identificador desta composição.
+     */
+    private final int qtdadeMaxVagoes;
 
-    private String nome;
+    /**
+     *
+     */
+    private Composicao composicao;
 
-    private void setId() {
-        id = rn.nextInt(10000000, 99999999);
-    }
-    public void setNome(int v) {
-        nome = "L" + v;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public int getId() {
-        setId();
-        return id;
-    }
-    public double getPesoMaximo() {
-        return 4500.0;
-    }
-    public boolean getAvailability(String id){
-        return garagemLocomotivas.checkId(id);
+    /**
+     *
+     */
+    private double pesoMax;
+
+    /**
+     * @param identificador
+     * @param pesoMaximo
+     * @param composicao
+     * @param qtdadeMaxVagoes
+     */
+    public Locomotiva(int identificador, double pesoMaximo,Composicao composicao, int qtdadeMaxVagoes) {
+        super(identificador , composicao);
+        this.qtdadeMaxVagoes = qtdadeMaxVagoes;
+        this.pesoMax = pesoMaximo;
     }
 
-    public int getnVagoes() {
-        return nVagoes;
+    /**
+     * @param pesoMaximo
+     */
+    public void setPesoMax(double pesoMaximo){
+        this.pesoMax = pesoMaximo;
+    }
+
+    /**
+     * @return double
+     */
+    public double getPesoMax(){return pesoMax;}
+
+    /**
+     *
+     * @return int
+     */
+    public int getQtdadeMaxVagoes() {
+        return qtdadeMaxVagoes;
+    }
+
+    /**
+     *
+     * @return dados da locomotiva em uma string
+     */
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Locomotiva.class.getSimpleName() + "[", "]")
+                .add("identificador=" + getIdentificador())
+                .add("pesoMaximo=" + getPesoMax())
+                .add("qtdadeMaxVagoes=" + qtdadeMaxVagoes)
+                //.add("composicao=" + composicao)
+                .toString();
     }
 }
