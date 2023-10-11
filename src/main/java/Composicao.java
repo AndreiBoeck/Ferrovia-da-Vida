@@ -1,3 +1,4 @@
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
@@ -16,42 +17,33 @@ public class Composicao {
     /**
      * O identificador desta composição.
      */
-    private final int identificador;
+    private final String identificador;
 
     /**
      * A lista de vagões da composição.
      */
-    private final ArrayList<Vagao> vagoes;
+    private final ArrayList<Vagao> vagoes = new ArrayList<>();
 
     /**
      * A lista de locomotivas da composição.
      */
-    private final ArrayList<Locomotiva> locomotivas;
+    private final ArrayList<Locomotiva> locomotivas = new ArrayList<>();
+
+    public ArrayList<Carro> trem = new ArrayList();
 
     /**
      * Cria uma nova composição.
      * A composição necessita de uma locomotiva livre.
-     *
-     * @param locomotiva a primeira locomotiva da composição
      */
-    public Composicao(Locomotiva locomotiva){
-        if (locomotiva == null) {
-            throw new IllegalArgumentException();
-        }
-        if (locomotiva.getComposicao() != null) {
-            System.out.println("Locomotiva está sendo usada");
-        }
-        identificador = NEXT_ID++;
-        vagoes = new ArrayList<>();
-        locomotivas = new ArrayList<>();
-        locomotivas.add(locomotiva);
-        locomotiva.setComposicao(this);
+    public Composicao(){
+        identificador = "C" + NEXT_ID;
+        NEXT_ID++;
     }
 
     /**
      * @return o identificador da composição
      */
-    public int getIdentificador() {
+    public String getIdentificador() {
         return identificador;
     }
 
@@ -66,7 +58,7 @@ public class Composicao {
      * @param posicao a posição da locomotiva na composição, iniciando em 1
      * @return a locomotiva na posição indicada
      */
-    public Locomotiva getLocomotiva(int posicao) {
+    public Carro getLocomotiva(int posicao) {
         return locomotivas.get(posicao - 1);
     }
 
@@ -176,6 +168,19 @@ public class Composicao {
         }
     }
 
+    public void setComposition(){
+        for (Locomotiva locomotiva:
+             locomotivas) {
+            trem.add(locomotiva);
+            locomotiva.setComposicao(this);
+        }
+        for (Vagao vagao:
+             vagoes) {
+            trem.add(vagao);
+            vagao.setComposicao(this);
+        }
+    }
+
     /**
      * @return dados da composição em uma string
      */
@@ -183,8 +188,8 @@ public class Composicao {
     public String toString() {
         return new StringJoiner(", ", Composicao.class.getSimpleName() + "[", "]")
                 .add("identificador=" + identificador)
-                .add("vagoes=" + vagoes)
                 .add("locomotivas=" + locomotivas)
+                .add("vagoes=" + vagoes)
                 .toString();
     }
 }

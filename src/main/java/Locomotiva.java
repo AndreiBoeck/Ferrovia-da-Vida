@@ -17,6 +17,8 @@ public class Locomotiva extends Carro{
      */
     private final int qtdadeMaxVagoes;
 
+    private final String identificador;
+
     /**
      *
      */
@@ -28,15 +30,19 @@ public class Locomotiva extends Carro{
     private double pesoMax;
 
     /**
-     * @param identificador
      * @param pesoMaximo
-     * @param composicao
      * @param qtdadeMaxVagoes
      */
-    public Locomotiva(int identificador, double pesoMaximo,Composicao composicao, int qtdadeMaxVagoes) {
-        super(identificador , composicao);
+    public Locomotiva(double pesoMaximo, int qtdadeMaxVagoes) {
         this.qtdadeMaxVagoes = qtdadeMaxVagoes;
         this.pesoMax = pesoMaximo;
+        identificador = "L" + NEXT_ID;
+        NEXT_ID++;
+    }
+
+
+    public String getIdentificador(){
+        return identificador;
     }
 
     /**

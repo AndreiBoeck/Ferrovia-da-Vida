@@ -1,12 +1,12 @@
+import java.util.StringJoiner;
+
 abstract class Carro {
     private int identificador;
 //    private double pesoMax;
     private Composicao composicao;
 
-    public Carro(int identificador /**double pesoMax*/, Composicao composicao){
-        this.identificador = identificador;
-//        this.pesoMax = pesoMax;
-        this.composicao = composicao;
+
+    public Carro(){
     }
 
     public void setComposicao(Composicao composicao) {
@@ -16,7 +16,7 @@ abstract class Carro {
         this.composicao = composicao;
     }
 
-    public int getIdentificador(){return identificador;}
+    abstract String getIdentificador();
 
 //    public double getPesoMax(){return pesoMax;}
 
