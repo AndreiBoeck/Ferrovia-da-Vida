@@ -25,12 +25,12 @@ public class Composicao {
     /**
      * A lista de vagões da composição.
      */
-    private final ArrayList<Vagao> vagoes = new ArrayList<>();
+    private ArrayList<Vagao> vagoes = new ArrayList<>();
 
     /**
      * A lista de locomotivas da composição.
      */
-    private final ArrayList<Locomotiva> locomotivas = new ArrayList<>();
+    private ArrayList<Locomotiva> locomotivas = new ArrayList<>();
 
     public ArrayList<Carro> trem = new ArrayList();
 
@@ -40,6 +40,19 @@ public class Composicao {
      */
     public Composicao(){
         identificador = "C" + NEXT_ID;
+        NEXT_ID++;
+    }
+
+    /**
+     * Cria uma composição guardada na memória
+     * @param identificador identificador da composição
+     * @param locomotiva locomotiva guardada
+     * @param vagao vagão guardado
+     */
+    public Composicao(String identificador, ArrayList<Locomotiva> locomotivas, ArrayList<Vagao> vagoes){
+        this.identificador = identificador;
+        this.locomotivas = locomotivas;
+        this.vagoes = vagoes;
         NEXT_ID++;
     }
 
@@ -204,8 +217,15 @@ public class Composicao {
     public void saveComposicao() throws FileNotFoundException {
         PrintStream out = new PrintStream(new FileOutputStream( "src/main/resources/GaragemComposicao.csv", true));
         String vagao = (identificador + ";" +
-                locomotivas.toString().replaceAll(",", ";").replaceAll("]", "").replace('[', ' ').replaceAll("Locomotiva", "") + ";" +
-                vagoes.toString().replaceAll(",", ";").replaceAll("]", "").replace('[', ' ').replaceAll("Vagao", "")).replaceAll(" ", "");
+                locomotivas.toString().replaceAll(",", ";")
+                        .replaceAll("]", "")
+                        .replace('[', ' ')
+                        .replaceAll("Locomotiva", "") + ";" +
+                vagoes.toString().replaceAll(",", ";")
+                        .replaceAll("]", "")
+                        .replace('[', ' ')
+                        .replaceAll("Vagao", ""))
+                        .replaceAll(" ", "");
         out.println(vagao);
         out.close();
     }

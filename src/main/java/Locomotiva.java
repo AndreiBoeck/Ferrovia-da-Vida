@@ -43,6 +43,13 @@ public class Locomotiva extends Carro{
         NEXT_ID++;
     }
 
+    public Locomotiva(String identificador, double pesoMaximo, int qtdadeMaxVagoes){
+        this.qtdadeMaxVagoes = qtdadeMaxVagoes;
+        this.pesoMax = pesoMaximo;
+        this.identificador = identificador;
+        NEXT_ID++;
+    }
+
 
     public String getIdentificador(){
         return identificador;
@@ -74,11 +81,10 @@ public class Locomotiva extends Carro{
      */
     @Override
     public String toString() {
-        return new StringJoiner(", ", Locomotiva.class.getSimpleName() + "[", "]")
+        return new StringJoiner(";", Locomotiva.class.getSimpleName() + "[", "]")
                 .add("identificador=" + getIdentificador())
                 .add("pesoMaximo=" + getPesoMax())
                 .add("qtdadeMaxVagoes=" + qtdadeMaxVagoes)
-                //.add("composicao=" + composicao)
                 .toString();
     }
 

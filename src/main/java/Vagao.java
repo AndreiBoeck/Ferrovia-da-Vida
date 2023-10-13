@@ -24,6 +24,12 @@ public class Vagao extends Carro{
         NEXT_ID++;
     }
 
+    public Vagao(String identificador, double cargaMax) {
+        this.identificador = identificador;
+        this.cargaMax = cargaMax;
+        NEXT_ID++;
+    }
+
 
     public String getIdentificador(){
         return identificador;
@@ -36,10 +42,9 @@ public class Vagao extends Carro{
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Locomotiva.class.getSimpleName() + "[", "]")
+        return new StringJoiner("; ", Vagao.class.getSimpleName() + "[", "]")
                 .add("identificador=" + getIdentificador())
                 .add("pesoMaximo=" + getCargaMax())
-                //.add("composicao=" + composicao)
                 .toString();
     }
 
