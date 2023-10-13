@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.StringJoiner;
 
 /**
@@ -77,5 +80,12 @@ public class Locomotiva extends Carro{
                 .add("qtdadeMaxVagoes=" + qtdadeMaxVagoes)
                 //.add("composicao=" + composicao)
                 .toString();
+    }
+
+    public void saveLocomotivas() throws FileNotFoundException {
+        PrintStream out = new PrintStream(new FileOutputStream( "src/main/resources/GaragemLocomotivas.csv", true));
+        String locomotiva = getIdentificador() + ";" + getPesoMax() + ";" + getQtdadeMaxVagoes();
+        out.println(locomotiva);
+        out.close();
     }
 }

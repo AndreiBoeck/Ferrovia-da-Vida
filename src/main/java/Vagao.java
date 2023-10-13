@@ -44,9 +44,9 @@ public class Vagao extends Carro{
     }
 
     public void saveVagoes() throws FileNotFoundException {
-        File file = new File("src/main/resources/GaragemVagoes.csv");
-        PrintStream fl = new PrintStream(file);
+        PrintStream out = new PrintStream(new FileOutputStream( "src/main/resources/GaragemVagoes.csv", true));
         String vagao = getIdentificador() + ";" + getCargaMax();
-        fl.print(vagao + "\n");
+        out.println(vagao);
+        out.close();
     }
 }

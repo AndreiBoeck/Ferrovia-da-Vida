@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
 
 public class App {
+
+
     public static void main(String[] args) throws FileNotFoundException {
         Vagao vagao = new Vagao(42.0);
         Locomotiva locomotiva = new Locomotiva(48.0, 5);
@@ -14,5 +16,7 @@ public class App {
         System.out.println(aaa.toString());
         vagao.saveVagoes();
         vagao2.saveVagoes();
+        locomotiva.saveLocomotivas();
+        aaa.saveComposicao();
     }
 }

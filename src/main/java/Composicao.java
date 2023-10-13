@@ -1,4 +1,7 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
@@ -70,6 +73,11 @@ public class Composicao {
     }
 
     /**
+     *
+     */
+    private int counterL = 0;
+
+    /**
      * Engata locomotiva ao final da composição.
      * Caso a locomotiva pertença a uma outra compsição, uma exceção será lançada.
      * Caso um vagão esteja conectado, uma exceção será lançada.
@@ -86,7 +94,7 @@ public class Composicao {
         if (!vagoes.isEmpty()) {
             System.out.println("Locomotiva após vagão não é permitido!");
         }
-
+        counterL++;
         locomotivas.add(locomotiva);
     }
 
@@ -112,7 +120,7 @@ public class Composicao {
 
         double pesoMax = 0;
         for (Locomotiva locomotiva : locomotivas) {
-            pesoMax += locomotiva.getPesoMax();
+            pesoMax += locomotiva.getPesoMax() - (((10* locomotiva.getPesoMax())/100)*counterL);
         }
         double peso = 0;
         for (Vagao v : vagoes) {
@@ -191,5 +199,14 @@ public class Composicao {
                 .add("locomotivas=" + locomotivas)
                 .add("vagoes=" + vagoes)
                 .toString();
+    }
+
+    public void saveComposicao() throws FileNotFoundException {
+        PrintStream out = new PrintStream(new FileOutputStream( "src/main/resources/GaragemComposicao.csv", true));
+        String vagao = (identificador + ";" +
+                locomotivas.toString().replaceAll(",", ";").replaceAll("]", "").replace('[', ' ').replaceAll("Locomotiva", "") + ";" +
+                vagoes.toString().replaceAll(",", ";").replaceAll("]", "").replace('[', ' ').replaceAll("Vagao", "")).replaceAll(" ", "");
+        out.println(vagao);
+        out.close();
     }
 }
