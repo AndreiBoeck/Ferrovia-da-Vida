@@ -11,8 +11,13 @@ import java.util.StringJoiner;
  */
 public class Vagao extends Carro{
 
+    /**
+     * Qual é a carga máxima que o vagão consegue suportar
+     */
     private final double cargaMax;
-
+    /**
+     * O identificador do vagão
+     */
     private final String identificador;
 
     /**
@@ -22,7 +27,7 @@ public class Vagao extends Carro{
 
 
     /**
-     *
+     * Construtor de vagões criados pelo usuário
      * @param cargaMax carga maxima suportada pelo vagão
      */
     public Vagao(double cargaMax) {
@@ -32,7 +37,7 @@ public class Vagao extends Carro{
     }
 
     /**
-     * Construtor de Vagoes salvos nos arquivos csv
+     * Construtor dos vagões criados e salvos nos arquivos csv
      * @param identificador identificador do vagão
      * @param cargaMax carga maxima suportada pelo vagão
      */
@@ -44,6 +49,7 @@ public class Vagao extends Carro{
     }
 
     /**
+     * Retorna o Identificador de um vagão
      * @return identificador
      */
     public String getIdentificador(){
@@ -51,13 +57,14 @@ public class Vagao extends Carro{
     }
 
     /**
+     * Retorna a carga máxima suportada por um vagão
      * @return carga maxima
      */
     public double getCargaMax(){return cargaMax;}
 
 
     /**
-     *
+     * Retorna as informações de um vagão
      * @return String do Vagao
      */
 
