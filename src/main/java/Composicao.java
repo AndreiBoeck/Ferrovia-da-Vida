@@ -1,6 +1,5 @@
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.StringJoiner;
@@ -32,7 +31,7 @@ public class Composicao {
      */
     private ArrayList<Locomotiva> locomotivas = new ArrayList<>();
 
-    public ArrayList<Carro> trem = new ArrayList();
+    public ArrayList<Carro> trem = new ArrayList<>();
 
     /**
      * Cria uma nova composição.
@@ -46,8 +45,8 @@ public class Composicao {
     /**
      * Cria uma composição guardada na memória
      * @param identificador identificador da composição
-     * @param locomotiva locomotiva guardada
-     * @param vagao vagão guardado
+     * @param locomotivas locomotiva guardada
+     * @param vagoes vagão guardado
      */
     public Composicao(String identificador, ArrayList<Locomotiva> locomotivas, ArrayList<Vagao> vagoes){
         this.identificador = identificador;
@@ -71,18 +70,26 @@ public class Composicao {
     }
 
     /**
-     * @param posicao a posição da locomotiva na composição, iniciando em 1
-     * @return a locomotiva na posição indicada
+     *
+     * @return as locomotivas engatadas
      */
-    public Carro getLocomotiva(int posicao) {
-        return locomotivas.get(posicao - 1);
-    }
+    public ArrayList<Locomotiva> getLocomotivas() {
+        return locomotivas;}
 
     /**
      * @return a quantidade de vagões desta composição
      */
     public int getQtdadeVagoes() {
         return vagoes.size();
+    }
+
+
+    /**
+     *
+     * @return os vagões engatados
+     */
+    public ArrayList<Vagao> getVagoes(){
+        return vagoes;
     }
 
     /**
@@ -102,13 +109,26 @@ public class Composicao {
             throw new IllegalArgumentException();
         }
         if (locomotiva.getComposicao() != null) {
-            System.out.println("Locomotiva está em outra composição");
+            throw new RuntimeException("Locomotiva está em outra composição");
         }
         if (!vagoes.isEmpty()) {
-            System.out.println("Locomotiva após vagão não é permitido!");
+            throw new RuntimeException("Locomotiva após vagão não é permitido!");
         }
         counterL++;
         locomotivas.add(locomotiva);
+        locomotiva.setComposicao(this);
+    }
+
+    /**
+     *
+     * @return double de peso maximo
+     */
+    public double getPesoMax(){
+        double pesoMax = 0;
+        for (Locomotiva locomotiva : locomotivas) {
+            pesoMax += locomotiva.getPesoMax() - (((10* locomotiva.getPesoMax())/100)*counterL);
+        }
+        return pesoMax;
     }
 
     /**
@@ -121,7 +141,7 @@ public class Composicao {
             throw new IllegalArgumentException();
         }
         if (vagao.getComposicao() != null) {
-            System.out.println("Vagão em outra composição");
+            throw new RuntimeException("Vagao está em outra composição");
         }
         int total = 0;
         for (Locomotiva locomotiva : locomotivas) {
@@ -129,20 +149,19 @@ public class Composicao {
         }
         if (total <= vagoes.size()) {
             System.out.println("Maximo de vagões excedido");
+            return;
         }
 
-        double pesoMax = 0;
-        for (Locomotiva locomotiva : locomotivas) {
-            pesoMax += locomotiva.getPesoMax() - (((10* locomotiva.getPesoMax())/100)*counterL);
-        }
+        double pesoMax = getPesoMax();
         double peso = 0;
         for (Vagao v : vagoes) {
             peso += v.getCargaMax();
         }
         if (pesoMax <= peso) {
             System.out.println("Peso maximo excedido");
+            return;
         }
-
+        vagao.setComposicao(this);
         vagoes.add(vagao);
     }
 
@@ -152,10 +171,10 @@ public class Composicao {
      */
     public void desengataLocomotiva() {
         if (!vagoes.isEmpty()) {
-            System.out.println("Vagão após a locomotiva");
+            throw new RuntimeException("Vagão após a locomotiva");
         }
         if (locomotivas.size() <= 1) {
-            System.out.println("Primeira Locomotiva não pode ser removida");
+            throw new RuntimeException("Primeira Locomotiva não pode ser removida");
         }
 
         Locomotiva locomotiva = locomotivas.remove(locomotivas.size() - 1);
@@ -169,25 +188,15 @@ public class Composicao {
      */
     public void desengataVagao(){
         if (vagoes.isEmpty()) {
-            System.out.println("Nenhum vagão na composição");
+            throw new RuntimeException("Nenhum vagão na composição");
         }
         Vagao vagao = vagoes.remove(vagoes.size() - 1);
         vagao.setComposicao(null);
     }
 
     /**
-     * Desengata o último elemento da composição.
-     * O elemento pode ser um vagão ou uma locomotiva. O elemento retorna para sua garagem se
-     * puder ser removido.
-     * Se a composição for formada somente por uma locomotiva, uma exceção será lançada.
+     * Efetua a criação da composição
      */
-    public void desengataUltimoElemento(){
-        if (vagoes.isEmpty()) {
-            desengataLocomotiva();
-        } else {
-            desengataVagao();
-        }
-    }
 
     public void setComposition(){
         for (Locomotiva locomotiva:
@@ -214,6 +223,10 @@ public class Composicao {
                 .toString();
     }
 
+    /**
+     * Salva a composição
+     * @throws FileNotFoundException caso o arquivo não seja encontrado
+     */
     public void saveComposicao() throws FileNotFoundException {
         PrintStream out = new PrintStream(new FileOutputStream( "src/main/resources/GaragemComposicao.csv", true));
         String vagao = (identificador + ";" +

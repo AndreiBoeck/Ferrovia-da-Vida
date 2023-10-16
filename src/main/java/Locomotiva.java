@@ -25,16 +25,11 @@ public class Locomotiva extends Carro{
     /**
      *
      */
-    private Composicao composicao;
+    private final double pesoMax;
 
     /**
-     *
-     */
-    private double pesoMax;
-
-    /**
-     * @param pesoMaximo
-     * @param qtdadeMaxVagoes
+     * @param pesoMaximo peso maximo suportado pela locomotiva
+     * @param qtdadeMaxVagoes quantidade maxima de vagoes suportada pela locomotiva
      */
     public Locomotiva(double pesoMaximo, int qtdadeMaxVagoes) {
         this.qtdadeMaxVagoes = qtdadeMaxVagoes;
@@ -43,6 +38,12 @@ public class Locomotiva extends Carro{
         NEXT_ID++;
     }
 
+    /**
+     * Cria a composição salva na memória
+     * @param identificador identificador da locomotiva
+     * @param pesoMaximo peso maximo suportado pela locomotiva
+     * @param qtdadeMaxVagoes quantidade maxima de vagoes suportada pela locomotiva
+     */
     public Locomotiva(String identificador, double pesoMaximo, int qtdadeMaxVagoes){
         this.qtdadeMaxVagoes = qtdadeMaxVagoes;
         this.pesoMax = pesoMaximo;
@@ -50,16 +51,13 @@ public class Locomotiva extends Carro{
         NEXT_ID++;
     }
 
+    /**
+     * Retorna o identificador
+     * @return String
+     */
 
     public String getIdentificador(){
         return identificador;
-    }
-
-    /**
-     * @param pesoMaximo
-     */
-    public void setPesoMax(double pesoMaximo){
-        this.pesoMax = pesoMaximo;
     }
 
     /**
@@ -68,8 +66,7 @@ public class Locomotiva extends Carro{
     public double getPesoMax(){return pesoMax;}
 
     /**
-     *
-     * @return int
+     * @return quantidade maxima de vagões
      */
     public int getQtdadeMaxVagoes() {
         return qtdadeMaxVagoes;
@@ -88,6 +85,11 @@ public class Locomotiva extends Carro{
                 .toString();
     }
 
+
+    /**
+     * Salva locomotivas criadas
+     * @throws FileNotFoundException caso o arquivo não seja encontrado
+     */
     public void saveLocomotivas() throws FileNotFoundException {
         PrintStream out = new PrintStream(new FileOutputStream( "src/main/resources/GaragemLocomotivas.csv", true));
         String locomotiva = getIdentificador() + ";" + getPesoMax() + ";" + getQtdadeMaxVagoes();

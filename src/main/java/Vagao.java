@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Scanner;
 import java.util.StringJoiner;
 
 public class Vagao extends Carro{
@@ -16,7 +15,7 @@ public class Vagao extends Carro{
 
     /**
      *
-     * @param cargaMax
+     * @param cargaMax carga maxima suportada pelo vagão
      */
     public Vagao(double cargaMax) {
         this.cargaMax = cargaMax;
@@ -24,21 +23,35 @@ public class Vagao extends Carro{
         NEXT_ID++;
     }
 
+    /**
+     * Construtor de Vagoes salvos nos arquivos csv
+     * @param identificador identificador do vagão
+     * @param cargaMax carga maxima suportada pelo vagão
+     */
+
     public Vagao(String identificador, double cargaMax) {
         this.identificador = identificador;
         this.cargaMax = cargaMax;
         NEXT_ID++;
     }
 
-
+    /**
+     * @return identificador
+     */
     public String getIdentificador(){
         return identificador;
     }
 
     /**
-     * @return double
+     * @return carga maxima
      */
     public double getCargaMax(){return cargaMax;}
+
+
+    /**
+     *
+     * @return String do Vagao
+     */
 
     @Override
     public String toString() {
@@ -48,6 +61,10 @@ public class Vagao extends Carro{
                 .toString();
     }
 
+    /**
+     * Salva Vagoes
+     * @throws FileNotFoundException caso não ache o arquivo
+     */
     public void saveVagoes() throws FileNotFoundException {
         PrintStream out = new PrintStream(new FileOutputStream( "src/main/resources/GaragemVagoes.csv", true));
         String vagao = getIdentificador() + ";" + getCargaMax();

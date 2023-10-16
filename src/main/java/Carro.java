@@ -1,8 +1,5 @@
-import java.util.StringJoiner;
-
 abstract class Carro {
-    private int identificador;
-//    private double pesoMax;
+
     private Composicao composicao;
 
 
@@ -10,9 +7,6 @@ abstract class Carro {
     }
 
     public void setComposicao(Composicao composicao) {
-        //if (composicao == null) {
-        //    throw new IllegalArgumentException();
-        //}
         this.composicao = composicao;
     }
 
