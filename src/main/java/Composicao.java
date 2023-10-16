@@ -34,6 +34,10 @@ public class Composicao {
      */
     private ArrayList<Locomotiva> locomotivas = new ArrayList<>();
 
+    /**
+     * A lista de composições criadas.
+     */
+
     public ArrayList<Carro> trem = new ArrayList<>();
 
     /**
@@ -59,6 +63,7 @@ public class Composicao {
     }
 
     /**
+     * Retorna o identificador da composição.
      * @return o identificador da composição
      */
     public String getIdentificador() {
@@ -66,6 +71,7 @@ public class Composicao {
     }
 
     /**
+     * Retorna a quantidade de locomotivas dentro da composição.
      * @return a quantidade de locomotivas desta composição
      */
     public int getQtdadeLocomotivas() {
@@ -80,6 +86,7 @@ public class Composicao {
         return locomotivas;}
 
     /**
+     * Retora a quantidade de cagões na composição.
      * @return a quantidade de vagões desta composição
      */
     public int getQtdadeVagoes() {
@@ -88,16 +95,12 @@ public class Composicao {
 
 
     /**
-     *
      * @return os vagões engatados
      */
     public ArrayList<Vagao> getVagoes(){
         return vagoes;
     }
 
-    /**
-     *
-     */
     private int counterL = 0;
 
     /**
@@ -112,10 +115,10 @@ public class Composicao {
             throw new IllegalArgumentException();
         }
         if (locomotiva.getComposicao() != null) {
-            throw new RuntimeException("Locomotiva está em outra composição");
+            throw new RuntimeException("ERRO: locomotiva está em outra composição");
         }
         if (!vagoes.isEmpty()) {
-            throw new RuntimeException("Locomotiva após vagão não é permitido!");
+            throw new RuntimeException("ERRO: locomotiva após vagão não é permitido!");
         }
         counterL++;
         locomotivas.add(locomotiva);
@@ -136,7 +139,9 @@ public class Composicao {
 
     /**
      * Engata vagão ao final da composição.
-     *
+     * Caso o vagão esteja em outra composição, uma exceção será lançada.
+     * Caso a adição do vagão ultrapasse o limite de vagões para uma locomotiva, uma exceção será lançada.
+     * Caso o peso ultrapasse o limite estabelecido, uma exceção seá lançada.
      * @param vagao o vagão a ser engatado
      */
     public void engataVagao(Vagao vagao) throws PexoMaxExcedidoException, MaxVagoesException {
@@ -144,14 +149,14 @@ public class Composicao {
             throw new IllegalArgumentException();
         }
         if (vagao.getComposicao() != null) {
-            throw new RuntimeException("Vagao está em outra composição");
+            throw new RuntimeException("ERRO: vagão está em outra composição");
         }
         int total = 0;
         for (Locomotiva locomotiva : locomotivas) {
             total += locomotiva.getQtdadeMaxVagoes();
         }
         if (total <= vagoes.size()) {
-            System.out.println("Maximo de vagões excedido");
+            System.out.println("ERRO: máximo de vagões excedido");
             throw new MaxVagoesException();
         }
 
@@ -161,7 +166,7 @@ public class Composicao {
             peso += v.getCargaMax();
         }
         if (pesoMax <= peso) {
-            System.out.println("Peso maximo excedido");
+            System.out.println("ERRO: peso máximo excedido");
             throw new PexoMaxExcedidoException();
         }
         vagao.setComposicao(this);
@@ -170,6 +175,8 @@ public class Composicao {
 
     /**
      * Desengata a locomotiva ao final da composição.
+     * Caso ainda há um vagão conectado a locomotiva, uma exceção será lançada.
+     * Caso for a primeira locomotiva, uma exceção será lançada.
      * A locomotiva retorna para sua garagem, se puder ser desengatada.
      */
     public void desengataLocomotiva() {
@@ -177,7 +184,7 @@ public class Composicao {
             throw new RuntimeException("Vagão após a locomotiva");
         }
         if (locomotivas.size() <= 1) {
-            throw new RuntimeException("Primeira Locomotiva não pode ser removida");
+            throw new RuntimeException("Primeira locomotiva não pode ser removida.");
         }
 
         Locomotiva locomotiva = locomotivas.remove(locomotivas.size() - 1);
@@ -186,8 +193,8 @@ public class Composicao {
 
     /**
      * Desengata o vagão ao final da composição.
-     * O vagão retorna para sua garagem, se puder ser desengatado.
      * Caso não existe vagão para desengatar, uma exceção será lançada.
+     * O vagão retorna para sua garagem, se puder ser desengatado.
      */
     public void desengataVagao(){
         if (vagoes.isEmpty()) {
