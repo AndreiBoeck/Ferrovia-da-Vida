@@ -17,18 +17,26 @@ public class Locomotiva extends Carro{
      * O identificador da próxima instância de locomotiva.
      */
     private static int NEXT_ID = 1;
+
+    /**
+     * A quantidade máxima de vagões que a locomotiva suporta
+     */
     private final int qtdadeMaxVagoes;
 
+    /**
+     * O identificador da locomotiva
+     */
     private final String identificador;
 
     /**
-     *
+     * o peso máximo que a locomotiva suporta
      */
     private final double pesoMax;
 
     /**
+     * Construtor das locomotivas criadas pelo usuário
      * @param pesoMaximo peso maximo suportado pela locomotiva
-     * @param qtdadeMaxVagoes quantidade maxima de vagoes suportada pela locomotiva
+     * @param qtdadeMaxVagoes quantidade máxima de vagoes suportada pela locomotiva
      */
     public Locomotiva(double pesoMaximo, int qtdadeMaxVagoes) {
         this.qtdadeMaxVagoes = qtdadeMaxVagoes;
@@ -38,7 +46,7 @@ public class Locomotiva extends Carro{
     }
 
     /**
-     * Cria a composição salva na memória
+     * Construtor das locomotiva criadas e salvas na memória
      * @param identificador identificador da locomotiva
      * @param pesoMaximo peso maximo suportado pela locomotiva
      * @param qtdadeMaxVagoes quantidade maxima de vagoes suportada pela locomotiva
@@ -60,11 +68,13 @@ public class Locomotiva extends Carro{
     }
 
     /**
+     * Retorna o peso máximo da locomotiva
      * @return double
      */
     public double getPesoMax(){return pesoMax;}
 
     /**
+     * Retorna a quantidade máxima de vagões estabelecida
      * @return quantidade maxima de vagões
      */
     public int getQtdadeMaxVagoes() {
@@ -72,7 +82,7 @@ public class Locomotiva extends Carro{
     }
 
     /**
-     *
+     * Retorna informações da locomotiva
      * @return dados da locomotiva em uma string
      */
     @Override
