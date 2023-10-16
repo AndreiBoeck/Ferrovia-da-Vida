@@ -3,7 +3,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringJoiner;
-
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
@@ -88,6 +87,12 @@ public class App {
         return comp;
     }
 
+    /**
+     * Edita/Cria composições
+     * @param composicao composição a ser editada
+     * @param locomotivas locomotivas ja criadas
+     * @param vagoes vagões ja criados
+     */
     public static void editarComposicao(Composicao composicao,ArrayList<Locomotiva> locomotivas, ArrayList<Vagao> vagoes){
         Scanner in = new Scanner(System.in);
         System.out.println("Aviso: Para a criação de trens, você apenas poderá engatar locomotivas atrás de " +

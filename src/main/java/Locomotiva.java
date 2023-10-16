@@ -4,9 +4,12 @@ import java.io.PrintStream;
 import java.util.StringJoiner;
 
 /**
- * A classe Locomotiva representa o veículo que movimenta uma composição.
+ * A classe Locomotiva estende a classe Carro e movimenta uma composição.
  *
- * @author marco.mangan@pucrs.br
+ * @author adrei.boeck@edu.pucrs.br
+ * @author luisa.scolari@edu.pucrs.br
+ * @author marcela.zarichta@edu.pucrs.br
+ * @author rafael.roth@edu.pucrs.br
  */
 public class Locomotiva extends Carro{
 
@@ -14,10 +17,6 @@ public class Locomotiva extends Carro{
      * O identificador da próxima instância de locomotiva.
      */
     private static int NEXT_ID = 1;
-
-    /**
-     * O identificador desta composição.
-     */
     private final int qtdadeMaxVagoes;
 
     private final String identificador;

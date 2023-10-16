@@ -7,7 +7,10 @@ import java.util.StringJoiner;
 /**
  * A classe Composicao representa um trem com ao menos uma locomotiva.
  *
- * @author marco.mangan@pucrs.br
+ * @author adrei.boeck@edu.pucrs.br
+ * @author luisa.scolari@edu.pucrs.br
+ * @author marcela.zarichta@edu.pucrs.br
+ * @author rafael.roth@edu.pucrs.br
  */
 public class Composicao {
 

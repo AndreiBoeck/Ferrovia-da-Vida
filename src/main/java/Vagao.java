@@ -1,6 +1,14 @@
 import java.io.*;
 import java.util.StringJoiner;
 
+/**
+ * A classe Vagao estende a classe Carro sendo movimentada em uma composição.
+ *
+ * @author adrei.boeck@edu.pucrs.br
+ * @author luisa.scolari@edu.pucrs.br
+ * @author marcela.zarichta@edu.pucrs.br
+ * @author rafael.roth@edu.pucrs.br
+ */
 public class Vagao extends Carro{
 
     private final double cargaMax;
