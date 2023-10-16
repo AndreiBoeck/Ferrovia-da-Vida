@@ -9,7 +9,7 @@ import static java.lang.Integer.parseInt;
 public class App {
 
     /**
-     * Le e retorna todas as Locomotivas criadas
+     * Lê e retorna todas as Locomotivas criadas
      * @return ArrayList<Locomotiva>
      * @throws FileNotFoundException caso não ache o arquivo
      */
@@ -29,7 +29,7 @@ public class App {
         return locomotivas;
     }
     /**
-     * Le e retorna todas as Vagoes criados
+     * Lê e retorna todas os vagões criados
      * @return ArrayList<Vagao>
      * @throws FileNotFoundException caso não ache o arquivo
      */
@@ -52,7 +52,7 @@ public class App {
 
 
     /**
-     * Le e retorna todas as composições criadas
+     * Lê e retorna todas as composições criadas
      * @return ArrayList<Composicao>
      * @throws FileNotFoundException caso não ache o arquivo
      */
@@ -93,7 +93,7 @@ public class App {
      * @param locomotivas locomotivas ja criadas
      * @param vagoes vagões ja criados
      */
-    public static void editarComposicao(Composicao composicao,ArrayList<Locomotiva> locomotivas, ArrayList<Vagao> vagoes){
+    public static void editarComposicao(Composicao composicao,ArrayList<Locomotiva> locomotivas, ArrayList<Vagao> vagoes) throws PexoMaxExcedidoException, MaxVagoesException {
         Scanner in = new Scanner(System.in);
         System.out.println("Aviso: Para a criação de trens, você apenas poderá engatar locomotivas atrás de " +
                 "locomotivas, nunca intercalá-las com os vagões.");
@@ -172,7 +172,7 @@ public class App {
         }while (escolha != 0);
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, PexoMaxExcedidoException, MaxVagoesException {
         Scanner in = new Scanner(System.in);
         ArrayList<Composicao> comp = inicializarComp();
         ArrayList<Vagao> vagoes = inicializarVagao();

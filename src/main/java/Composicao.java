@@ -139,7 +139,7 @@ public class Composicao {
      *
      * @param vagao o vagão a ser engatado
      */
-    public void engataVagao(Vagao vagao){
+    public void engataVagao(Vagao vagao) throws PexoMaxExcedidoException, MaxVagoesException {
         if (vagao == null) {
             throw new IllegalArgumentException();
         }
@@ -152,7 +152,7 @@ public class Composicao {
         }
         if (total <= vagoes.size()) {
             System.out.println("Maximo de vagões excedido");
-            return;
+            throw new MaxVagoesException();
         }
 
         double pesoMax = getPesoMax();
@@ -162,7 +162,7 @@ public class Composicao {
         }
         if (pesoMax <= peso) {
             System.out.println("Peso maximo excedido");
-            return;
+            throw new PexoMaxExcedidoException();
         }
         vagao.setComposicao(this);
         vagoes.add(vagao);
